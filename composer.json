@@ -1,0 +1,40 @@
+{
+  "name": "japseyz/dot-migrations",
+  "type": "library",
+  "description": "A package made for DotKernel 3 to introduce migrations and seeders",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "JapSeyz",
+      "email": "jesper@apidemia.com"
+    }
+  ],
+  "require": {
+    "php": "^7.1",
+    "zendframework/zend-servicemanager": "^3.3.0",
+    "robmorgan/phinx": "^0.8.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^4.8",
+    "squizlabs/php_codesniffer": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dot\\Migrations\\": "src/"
+    },
+    "files": [
+      "src\\helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "DotTest\\Migrations\\": "test/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.1-dev",
+      "dev-develop": "0.2-dev"
+    }
+  }
+}

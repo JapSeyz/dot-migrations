@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+return [
+    'environments' => [
+        'default_migration_table' => 'migrations',
+        'default_database' =>  'development',
+
+        'production' => [
+            'adapter' => 'mysql',
+            'host' => config('config.autoload.production.db.adapters.database.hostname', 'localhost'),
+            'name' => config('config.autoload.production.db.adapters.database.database', 'production_db'),
+            'user' => config('config.autoload.production.db.adapters.database.username', 'root'),
+            'pass' => config('config.autoload.production.db.adapters.database.password', ''),
+            'port' => 3306,
+            'charset' => config('config.autoload.production.db.adapters.database.charset', 'utf8'),
+        ],
+
+        'development' => [
+            'adapter' => 'mysql',
+            'host' => config('config.autoload.local.db.adapters.database.hostname', 'localhost'),
+            'name' => config('config.autoload.local.db.adapters.database.database', 'local_db'),
+            'user' => config('config.autoload.local.db.adapters.database.username', 'root'),
+            'pass' => config('config.autoload.local.db.adapters.database.password', ''),
+            'port' => 3306,
+            'charset' => config('config.autoload.local.db.adapters.database.charset', 'utf8'),
+        ],
+
+        'testing' => [
+            'adapter' => 'mysql',
+            'host' => config('config.autoload.testing.db.adapters.database.hostname', 'localhost'),
+            'name' => config('config.autoload.testing.db.adapters.database.database', 'testing_db'),
+            'user' => config('config.autoload.testing.db.adapters.database.username', 'root'),
+            'pass' => config('config.autoload.testing.db.adapters.database.password', ''),
+            'port' => 3306,
+            'charset' => config('config.autoload.testing.db.adapters.database.charset', 'utf8'),
+        ],
+    ],
+
+    'paths' => [
+        'migrations' => 'db/migrations',
+        'seeds' =>  'db/seeds',
+    ],
+
+    'version_order' => 'creation',
+];
