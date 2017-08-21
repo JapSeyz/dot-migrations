@@ -31,7 +31,7 @@ abstract class BaseCommand extends AbstractCommand
     {
         $this->isProduction = $isProduction;
         $this->env = $this->isProduction ? 'production' : 'development';
-        $this->shellPath = \dirname(__DIR__, 4).'/vendor/bin/phinx';
+        $this->shellPath = \dirname(__DIR__, 4).'/bin/phinx';
         $this->rootPath = \dirname(__DIR__, 5);
         $this->configPath = $this->rootPath.'/config/migrations.php';
         $this->output = [];
