@@ -37,7 +37,7 @@ class RollbackCommand extends BaseCommand
         \exec(
             $this->packagePath.'/vendor/bin/phinx rollback '.
             '-e '.$this->env.' '.
-            '-c '.$this->rootPath.'/config/autoload/migrations.global.php',
+            '-c '.$this->configPath.' '.
             $this->output,
             $this->failure
         );

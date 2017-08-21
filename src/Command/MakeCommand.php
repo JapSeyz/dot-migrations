@@ -36,7 +36,7 @@ class MakeCommand extends BaseCommand
         // Execute the Phinx command
         \exec(
             $this->packagePath.'/vendor/bin/phinx create '.
-            '-c '.$this->rootPath.'/config/autoload/migrations.global.php '.
+            '-c '.$this->configPath.' '.
             $matches['name'],
             $this->output,
             $this->failure

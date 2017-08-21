@@ -39,7 +39,7 @@ class SeedCommand extends BaseCommand
         // Prepare the command
         $command = $this->packagePath.'/vendor/bin/phinx migrate '.
             '-e '.$this->env.' '.
-            '-c '.$this->rootPath.'/config/autoload/migrations.global.php '.
+            '-c '.$this->configPath.' '.
             $matches['name'];
 
         // Check whether or not to seed all or a single seeder

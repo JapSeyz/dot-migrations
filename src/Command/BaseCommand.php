@@ -25,6 +25,7 @@ abstract class BaseCommand extends AbstractCommand
     protected $rootPath;
     protected $output;
     protected $failure;
+    protected $configPath;
 
     public function __construct(bool $isProduction)
     {
@@ -32,6 +33,7 @@ abstract class BaseCommand extends AbstractCommand
         $this->env = $this->isProduction ? 'production' : 'development';
         $this->packagePath = \dirname(__DIR__, 2);
         $this->rootPath = \dirname(__DIR__, 5);
+        $this->configPath = $this->rootPath.'/config/migrations.php';
         $this->output = [];
         $this->failure = 0;
     }

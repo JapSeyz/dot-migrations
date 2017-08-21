@@ -4,7 +4,7 @@ Add migrations and seeders to your DotKernel3 project.
 
 ### Usage
 
-Some new commands as been added to the ```php dot``` command.
+Some new commands as been added to the `php dot` command.
 
 * make:migration <name>
     * Make a migration file, which will be used to create new tables and rows in the database
@@ -22,9 +22,22 @@ Some new commands as been added to the ```php dot``` command.
 To run any of them simply run php dot <command>.
 Dot kernel will take care of the rest, putting the files in the
 right directory etc.
-Settings can be found in the migrations.global.php.dist and should be configred properly
-already, but the settings can be customised to fit your project.
+Settings can be found in the `migrations.php.dist`.
 
-The package also exposes a single method, the ```config()``` method, which allows you to
+The package also exposes a single method, the `config()` method, which allows you to
 grab any config key/value, before it enters the global configuration, thus you don't need a
 factory to grab it. This method play an important role i not duplicating config values.
+
+### Installation
+
+1) Installing is extremely easy, all you have to do it copy the `migrations.php.dist` file to the `/config` folder and remove the .dist ending. (You may here edit the options to fit your project, but the standard setup should fit almost any needs).
+
+2) After that is done, you open up `/config/config.php` and add `\Dot\Migrations\ConfigProvider::class,` to the `$aggregator` array.
+
+3) That's it, all you have to do now is run `composer dump-autoload` and enjoy access to migrations and seeders, all you have to do is run `php dot`
+
+
+### Troubleshooting
+
+##### The migrations commands does not show up, what do I do?
+If you've follow the installation, but no commands show up, try deleting `/data/config-cache.php` and running `php dot` again.
