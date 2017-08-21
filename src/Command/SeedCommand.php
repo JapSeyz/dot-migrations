@@ -9,23 +9,15 @@ declare(strict_types=1);
 
 namespace Dot\Migrations\Command;
 
-use Dot\AnnotatedServices\Annotation\Service;
 use Zend\Console\Adapter\AdapterInterface;
 use ZF\Console\Route;
 
 /**
  * Class MigrateCommand
  * @package Dot\Migrations\Command
- *
- * @Service
  */
 class SeedCommand extends BaseCommand
 {
-    public function __construct(bool $isProduction)
-    {
-        parent::__construct($isProduction);
-    }
-
     /**
      * @param Route $route
      * @param AdapterInterface $console

@@ -11,21 +11,13 @@ namespace Dot\Migrations\Command;
 
 use ZF\Console\Route;
 use Zend\Console\Adapter\AdapterInterface;
-use Dot\AnnotatedServices\Annotation\Service;
 
 /**
  * Class MigrateCommand
  * @package Dot\Migrations\Command
- *
- * @Service
  */
 class MigrateCommand extends BaseCommand
 {
-    public function __construct(bool $isProduction)
-    {
-        parent::__construct($isProduction);
-    }
-
     /**
      * @param Route $route
      * @param AdapterInterface $console

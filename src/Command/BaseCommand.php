@@ -9,18 +9,13 @@ declare(strict_types=1);
 
 namespace Dot\Migrations\Command;
 
-use Dot\AnnotatedServices\Annotation\Service;
 use Dot\Console\Command\AbstractCommand;
 use Zend\Console\Prompt\Confirm;
-use Dot\AnnotatedServices\Annotation\Inject;
-use Dot\Migrations\Factory\CommandFactory;
 use Zend\Console\Adapter\AdapterInterface;
 
 /**
  * Class BaseCommand
  * @package Dot\Migrations\Command
- *
- * @Service
  */
 abstract class BaseCommand extends AbstractCommand
 {
@@ -31,10 +26,6 @@ abstract class BaseCommand extends AbstractCommand
     protected $output;
     protected $failure;
 
-    /**
-     *
-     * @inject({CommandFactory::Class})
-     */
     public function __construct(bool $isProduction)
     {
         $this->isProduction = $isProduction;
