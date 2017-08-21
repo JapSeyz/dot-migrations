@@ -34,10 +34,16 @@ factory to grab it. This method play an important role i not duplicating config 
 
 2) After that is done, you open up `/config/config.php` and add `\Dot\Migrations\ConfigProvider::class,` to the `$aggregator` array.
 
-3) That's it, all you have to do now is run `composer dump-autoload` and enjoy access to migrations and seeders, all you have to do is run `php dot`
+3) Create a folder inside `data` named `database`, and inside this, create two folders; `migrations` and `seeds`, this is where your migrations and seeds will go.
+
+4) That's it, all you have to do now is run `composer dump-autoload` and enjoy access to migrations and seeders, all you have to do is run `php dot`
 
 
 ### Troubleshooting
 
 ##### The migrations commands does not show up, what do I do?
 If you've follow the installation, but no commands show up, try deleting `/data/config-cache.php` and running `php dot` again.
+
+
+##### The system cannot find the path specified.
+This happens if you did not follow step 3) in the installation guide. You need to create a folder named `database` inside `data`
