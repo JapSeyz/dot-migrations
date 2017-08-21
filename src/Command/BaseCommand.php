@@ -28,6 +28,8 @@ abstract class BaseCommand extends AbstractCommand
     protected $env;
     protected $packagePath;
     protected $rootPath;
+    protected $output;
+    protected $failure;
 
     /**
      *
@@ -37,8 +39,10 @@ abstract class BaseCommand extends AbstractCommand
     {
         $this->isProduction = $isProduction;
         $this->env = $this->isProduction ? 'production' : 'development';
-        $this->packagePath = __DIR__.'../../../';
-        $this->rootPath = __DIR__.'../../../../../../';
+        $this->packagePath = \dirname(__DIR__, 2);
+        $this->rootPath = \dirname(__DIR__, 5);
+        $this->output = [];
+        $this->failure = 0;
     }
 
     /**

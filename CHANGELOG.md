@@ -1,3 +1,3 @@
-## 0.1.0 - 2017-08-19
+## 0.0.1 - 2017-08-21
 
-### Version 1 available
+### Version 0.1 available

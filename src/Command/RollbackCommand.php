@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Dot\Migrations\Command;
 
 use Dot\AnnotatedServices\Annotation\Service;
-use Dot\Console\Command\AbstractCommand;
 use Zend\Console\Adapter\AdapterInterface;
 use ZF\Console\Route;
 
@@ -20,7 +19,7 @@ use ZF\Console\Route;
  *
  * @Service
  */
-class RollbackCommand extends AbstractCommand
+class RollbackCommand extends BaseCommand
 {
     public function __construct(bool $isProduction)
     {
@@ -43,11 +42,18 @@ class RollbackCommand extends AbstractCommand
         $console->write('Rolling back to previous batch');
 
         // Run the Phinx command
-        \shell_exec($this->packagePath.'vendor/bin/phinx rollback '.
-            '-c '.$this->rootPath.'config/autoload/migrations.global.php');
+        \exec(
+            $this->packagePath.'/vendor/bin/phinx rollback '.
+            '-e '.$this->env.' '.
+            '-c '.$this->rootPath.'/config/autoload/migrations.global.php',
+            $this->output,
+            $this->failure
+        );
 
-        // Let the user know that the roll back has completed
-        $console->write('Finished rolling back tables');
+        if (! $this->failure) {
+            // Let the user know that the roll back has completed
+            $console->write('Finished rolling back tables');
+        }
 
         return 0;
     }

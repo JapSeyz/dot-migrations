@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Dot\Migrations\Command;
 
 use Dot\AnnotatedServices\Annotation\Service;
-use Dot\Console\Command\AbstractCommand;
 use Zend\Console\Adapter\AdapterInterface;
 use ZF\Console\Route;
 
@@ -20,7 +19,7 @@ use ZF\Console\Route;
  *
  * @Service
  */
-class SeedCommand extends AbstractCommand
+class SeedCommand extends BaseCommand
 {
     public function __construct(bool $isProduction)
     {
@@ -46,8 +45,9 @@ class SeedCommand extends AbstractCommand
         $console->write('Seeding tables');
 
         // Prepare the command
-        $command = $this->packagePath.'vendor/bin/phinx migrate '.
-            '-c '.$this->rootPath.'config/autoload/migrations.global.php '.
+        $command = $this->packagePath.'/vendor/bin/phinx migrate '.
+            '-e '.$this->env.' '.
+            '-c '.$this->rootPath.'/config/autoload/migrations.global.php '.
             $matches['name'];
 
         // Check whether or not to seed all or a single seeder
@@ -56,10 +56,12 @@ class SeedCommand extends AbstractCommand
         }
 
         // Execute the command
-        \shell_exec($command);
+        \exec($command, $this->output, $this->failure);
 
-        // Let the user know that the tables has been seeded
-        $console->write('Finished seeding tables');
+        if (! $this->failure) {
+            // Let the user know that the tables has been seeded
+            $console->write('Finished seeding tables');
+        }
 
         return 0;
     }

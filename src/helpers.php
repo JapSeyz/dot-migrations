@@ -17,12 +17,13 @@ if (! \function_exists('config')) {
     // if no config value is found.
     function config($path, $default)
     {
-        $projectRoot = __DIR__.'../../../';
+        $projectRoot = \dirname(__DIR__, 4);
+
         $parts = \explode('.', $path);
         $currentPath = $projectRoot;
         $configFile = false;
 
-        foreach ($parts as $part) {
+        foreach ($parts as $i => $part) {
             $currentPath .= '/'.\array_shift($parts);
 
             if (\is_dir($currentPath)) {
@@ -41,7 +42,7 @@ if (! \function_exists('config')) {
         }
 
         try {
-            $arr = include($configFile);
+            $arr = include $configFile;
         } catch (\Exception $e) {
             return $default;
         }

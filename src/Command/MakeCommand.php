@@ -14,12 +14,12 @@ use Zend\Console\Adapter\AdapterInterface;
 use Dot\AnnotatedServices\Annotation\Service;
 
 /**
- * Class CreateCommand
+ * Class MakeCommand
  * @package Dot\Migrations\Command
  *
  * @Service
  */
-class CreateSeedCommand extends BaseCommand
+class MakeCommand extends BaseCommand
 {
     public function __construct(bool $isProduction)
     {
@@ -42,12 +42,18 @@ class CreateSeedCommand extends BaseCommand
         $matches = $route->getMatches();
 
         // Execute the Phinx command
-        \shell_exec($this->packagePath.'vendor/bin/phinx seed:create '.
-            '-c '.$this->rootPath.'config/autoload/migrations.global.php '.
-            $matches['name']);
+        \exec(
+            $this->packagePath.'/vendor/bin/phinx create '.
+            '-c '.$this->rootPath.'/config/autoload/migrations.global.php '.
+            $matches['name'],
+            $this->output,
+            $this->failure
+        );
 
-        // Let the user know that the Seed has been created
-        $console->write('Created seeder '.$matches['name'].'.php');
+        if (! $this->failure) {
+            // Let the user know that the Migration has been created
+            $console->write('Created Migration: '.\date('YmdHis'). '_'.\strtolower($matches['name']).'.php');
+        }
 
         return 0;
     }

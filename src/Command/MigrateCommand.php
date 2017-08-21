@@ -9,10 +9,9 @@ declare(strict_types=1);
 
 namespace Dot\Migrations\Command;
 
-use Dot\AnnotatedServices\Annotation\Service;
-use Dot\Console\Command\AbstractCommand;
-use Zend\Console\Adapter\AdapterInterface;
 use ZF\Console\Route;
+use Zend\Console\Adapter\AdapterInterface;
+use Dot\AnnotatedServices\Annotation\Service;
 
 /**
  * Class MigrateCommand
@@ -20,7 +19,7 @@ use ZF\Console\Route;
  *
  * @Service
  */
-class MigrateCommand extends AbstractCommand
+class MigrateCommand extends BaseCommand
 {
     public function __construct(bool $isProduction)
     {
@@ -46,11 +45,18 @@ class MigrateCommand extends AbstractCommand
         $console->write('Migrating tables');
 
         // Run the Phinx command
-        \shell_exec($this->packagePath.'vendor/bin/phinx migrate '.
-            '-c '.$this->rootPath.'config/autoload/migrations.global.php');
+        \exec(
+            $this->packagePath.'/vendor/bin/phinx migrate '.
+            '-e '.$this->env.' '.
+            '-c '.$this->rootPath.'/config/autoload/migrations.global.php',
+            $this->output,
+            $this->failure
+        );
 
-        // Let the user know that the migrations has successfully
-        $console->write('Finised migrating tables');
+        if (! $this->failure) {
+            // Let the user know that the migrations has successfully
+            $console->write('Finised migrating tables');
+        }
 
         return 0;
     }

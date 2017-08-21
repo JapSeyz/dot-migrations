@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Dot\Migrations\Command;
 
 use Dot\AnnotatedServices\Annotation\Service;
-use Dot\Console\Command\AbstractCommand;
 use Zend\Console\Adapter\AdapterInterface;
 use ZF\Console\Route;
 
@@ -20,7 +19,7 @@ use ZF\Console\Route;
  *
  * @Service
  */
-class ResetCommand extends AbstractCommand
+class ResetCommand extends BaseCommand
 {
     public function __construct(bool $isProduction)
     {
@@ -43,11 +42,18 @@ class ResetCommand extends AbstractCommand
         $console->write('Resetting tables');
 
         // Run the Phinx command
-        \shell_exec($this->packagePath.'vendor/bin/phinx rollback -t 0 -f -e '.
-            '-c '.$this->rootPath.'config/autoload/migrations.global.php');
+        \exec(
+            $this->packagePath.'/vendor/bin/phinx rollback -t 0 -f '.
+            '-e '.$this->env.' '.
+            '-c '.$this->rootPath.'/config/autoload/migrations.global.php',
+            $this->output,
+            $this->failure
+        );
 
-        // Let the user know that the command has finished
-        $console->write('Finished resetting tables');
+        if (! $this->failure) {
+            // Let the user know that the command has finished
+            $console->write('Finished resetting tables');
+        }
 
         return 0;
     }

@@ -9,13 +9,13 @@ declare(strict_types = 1);
 
 namespace Dot\Migrations;
 
+use Dot\Migrations\Command\MakeCommand;
 use Dot\Migrations\Command\SeedCommand;
 use Dot\Migrations\Command\ResetCommand;
-use Dot\Migrations\Command\CreateCommand;
 use Dot\Migrations\Command\MigrateCommand;
 use Dot\Migrations\Factory\CommandFactory;
+use Dot\Migrations\Command\MakeSeedCommand;
 use Dot\Migrations\Command\RollbackCommand;
-use Dot\Migrations\Command\CreateSeedCommand;
 
 /**
  * Class ConfigProvider
@@ -39,8 +39,8 @@ class ConfigProvider
     {
         return [
             'factories' => [
-                CreateCommand::class => CommandFactory::class,
-                CreateSeedCommand::class => CommandFactory::class,
+                MakeCommand::class => CommandFactory::class,
+                MakeSeedCommand::class => CommandFactory::class,
                 MigrateCommand::class => CommandFactory::class,
                 ResetCommand::class => CommandFactory::class,
                 RollbackCommand::class => CommandFactory::class,
@@ -54,9 +54,9 @@ class ConfigProvider
         return [
             'commands' => [
                 [
-                    'name' => 'create:migration <name>',
+                    'name' => 'make:migration <name>',
                     'description' => 'Generate a migration',
-                    'handler' => CreateCommand::class,
+                    'handler' => MakeCommand::class,
                 ],
                 [
                     'name' => 'migrate [--force]',
@@ -74,9 +74,9 @@ class ConfigProvider
                     'handler' => ResetCommand::class,
                 ],
                 [
-                    'name' => 'create:seed <name>',
+                    'name' => 'make:seed <name>',
                     'description' => 'Generate a seeder',
-                    'handler' => CreateSeedCommand::class,
+                    'handler' => MakeSeedCommand::class,
                 ],
                 [
                     'name' => 'seed [name]',
