@@ -43,7 +43,3 @@ factory to grab it. This method play an important role i not duplicating config 
 
 ##### The migrations commands does not show up, what do I do?
 If you've follow the installation, but no commands show up, try deleting `/data/config-cache.php` and running `php dot` again.
-
-
-##### The system cannot find the path specified.
-This happens if you did not follow step 3) in the installation guide. You need to create a folder named `database` inside `data`

@@ -35,7 +35,7 @@ class MakeCommand extends BaseCommand
 
         // Execute the Phinx command
         \exec(
-            $this->packagePath.'/vendor/bin/phinx create '.
+            $this->shellPath.' create '.
             '-c '.$this->configPath.' '.
             $matches['name'],
             $this->output,

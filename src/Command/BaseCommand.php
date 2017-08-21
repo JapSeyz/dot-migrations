@@ -21,7 +21,7 @@ abstract class BaseCommand extends AbstractCommand
 {
     protected $isProduction;
     protected $env;
-    protected $packagePath;
+    protected $shellPath;
     protected $rootPath;
     protected $output;
     protected $failure;
@@ -31,7 +31,7 @@ abstract class BaseCommand extends AbstractCommand
     {
         $this->isProduction = $isProduction;
         $this->env = $this->isProduction ? 'production' : 'development';
-        $this->packagePath = \dirname(__DIR__, 2);
+        $this->shellPath = \dirname(__DIR__, 4).'/vendor/bin/phinx';
         $this->rootPath = \dirname(__DIR__, 5);
         $this->configPath = $this->rootPath.'/config/migrations.php';
         $this->output = [];

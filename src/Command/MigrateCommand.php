@@ -38,7 +38,7 @@ class MigrateCommand extends BaseCommand
 
         // Run the Phinx command
         \exec(
-            $this->packagePath.'/vendor/bin/phinx migrate '.
+            $this->shellPath.' migrate '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath.' '.
             $this->output,

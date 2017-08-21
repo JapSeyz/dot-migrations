@@ -35,7 +35,7 @@ class MakeSeedCommand extends BaseCommand
 
         // Execute the Phinx command
         \exec(
-            $this->packagePath.'/vendor/bin/phinx seed:create '.
+            $this->shellPath.' seed:create '.
             '-c '.$this->configPath.' '.
             $matches['name'],
             $this->output,

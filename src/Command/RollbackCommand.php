@@ -35,7 +35,7 @@ class RollbackCommand extends BaseCommand
 
         // Run the Phinx command
         \exec(
-            $this->packagePath.'/vendor/bin/phinx rollback '.
+            $this->shellPath.' rollback '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath.' '.
             $this->output,

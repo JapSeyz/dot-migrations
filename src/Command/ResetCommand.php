@@ -35,7 +35,7 @@ class ResetCommand extends BaseCommand
 
         // Run the Phinx command
         \exec(
-            $this->packagePath.'/vendor/bin/phinx rollback -t 0 -f '.
+            $this->shellPath.' rollback -t 0 -f '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath.' '.
             $this->output,

@@ -37,7 +37,7 @@ class SeedCommand extends BaseCommand
         $console->write('Seeding tables');
 
         // Prepare the command
-        $command = $this->packagePath.'/vendor/bin/phinx migrate '.
+        $command = $this->shellPath.' migrate '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath.' '.
             $matches['name'];
