@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @see https://github.com/dotkernel/dot-mail/ for the canonical source repository
  * @copyright Copyright (c) 2017 Apidemia (https://www.apidemia.com)
@@ -9,7 +11,7 @@ namespace DotTest\Migrations;
 
 /**
  * Class MigrationServiceTest
- * @package DotTest\Mail
+ * @package DotTest\Migrations
  */
 class MigrationServiceTest extends \PHPUnit_Framework_TestCase
 {
