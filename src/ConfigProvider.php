@@ -19,7 +19,7 @@ use Dot\Migrations\Command\RollbackCommand;
 
 /**
  * Class ConfigProvider
- * @package Dot\Mail
+ * @package Dot\Migrations
  */
 class ConfigProvider
 {
