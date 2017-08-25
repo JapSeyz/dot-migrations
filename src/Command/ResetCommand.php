@@ -37,7 +37,7 @@ class ResetCommand extends BaseCommand
         \exec(
             $this->shellPath.' rollback -t 0 -f '.
             '-e '.$this->env.' '.
-            '-c '.$this->configPath.' '.
+            '-c '.$this->configPath.' ',
             $this->output,
             $this->failure
         );

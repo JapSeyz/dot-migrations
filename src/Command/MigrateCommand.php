@@ -40,7 +40,7 @@ class MigrateCommand extends BaseCommand
         \exec(
             $this->shellPath.' migrate '.
             '-e '.$this->env.' '.
-            '-c '.$this->configPath.' '.
+            '-c '.$this->configPath.' ',
             $this->output,
             $this->failure
         );

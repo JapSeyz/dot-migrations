@@ -37,7 +37,7 @@ class RollbackCommand extends BaseCommand
         \exec(
             $this->shellPath.' rollback '.
             '-e '.$this->env.' '.
-            '-c '.$this->configPath.' '.
+            '-c '.$this->configPath.' ',
             $this->output,
             $this->failure
         );
