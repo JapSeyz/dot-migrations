@@ -1,8 +1,8 @@
 <?php
 /**
- * @see https://github.com/dotkernel/frontend/ for the canonical source repository
+ * @see https://github.com/japseyz/dot-migrations/ for the canonical source repository
  * @copyright Copyright (c) 2017 Apidemia (https://www.apidemia.com)
- * @license https://github.com/dotkernel/frontend/blob/master/LICENSE.md MIT License
+ * @license https://github.com/japseyz/dot-migrations/blob/master/LICENSE.md MIT License
  */
 
 declare(strict_types=1);
@@ -21,6 +21,7 @@ class MakeCommand extends BaseCommand
     /**
      * @param Route $route
      * @param AdapterInterface $console
+     *
      * @return int
      */
     public function __invoke(Route $route, AdapterInterface $console)
@@ -33,18 +34,27 @@ class MakeCommand extends BaseCommand
         // Fetch command arguments
         $matches = $route->getMatches();
 
+        if ( ! \is_dir($matches['path'])) {
+            $console->write('The entered path does not exist');
+            return 0;
+        }
+
         // Execute the Phinx command
+        $command = $this->shellPath . ' create ' .
+            '-c ' . $this->configPath . ' ' .
+            $matches['name'] . ' ' .
+            '--path ' . $matches['path'];
+
         \exec(
-            $this->shellPath.' create '.
-            '-c '.$this->configPath.' '.
-            $matches['name'],
+            $command,
             $this->output,
             $this->failure
         );
 
-        if (! $this->failure) {
+        if ( ! $this->failure) {
+            $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Migration has been created
-            $console->write('Created Migration: '.\date('YmdHis'). '_'.\strtolower($matches['name']).'.php');
+            $console->write('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php');
         }
 
         return 0;

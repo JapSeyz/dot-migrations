@@ -39,8 +39,12 @@ return [
     ],
 
     'paths' => [
-        'migrations' => 'data/database/migrations',
-        'seeds' =>  'data/database/seeds',
+        'migrations' => [
+            'Data\\Database\\Migrations' => 'data/database/migrations'
+        ],
+        'seeds' =>  [
+            'Data\\Database\\Seeds' => 'data/database/seeds',
+        ]
     ],
 
     'version_order' => 'creation',

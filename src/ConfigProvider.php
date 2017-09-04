@@ -1,8 +1,8 @@
 <?php
 /**
- * @see https://github.com/dotkernel/dot-mail/ for the canonical source repository
+ * @see https://github.com/japseyz/dot-migrations/ for the canonical source repository
  * @copyright Copyright (c) 2017 Apidemia (https://www.apidemia.com)
- * @license https://github.com/dotkernel/dot-mail/blob/master/LICENSE.md MIT License
+ * @license https://github.com/japseyz/dot-migrations/blob/master/LICENSE.md MIT License
  */
 
 declare(strict_types = 1);
@@ -54,7 +54,7 @@ class ConfigProvider
         return [
             'commands' => [
                 [
-                    'name' => 'make:migration <name>',
+                    'name' => 'make:migration <name> <path>',
                     'description' => 'Generate a migration',
                     'handler' => MakeCommand::class,
                 ],
@@ -74,7 +74,7 @@ class ConfigProvider
                     'handler' => ResetCommand::class,
                 ],
                 [
-                    'name' => 'make:seed <name>',
+                    'name' => 'make:seed <name> <path>',
                     'description' => 'Generate a seeder',
                     'handler' => MakeSeedCommand::class,
                 ],

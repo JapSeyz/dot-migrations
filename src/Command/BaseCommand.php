@@ -1,8 +1,8 @@
 <?php
 /**
- * @see https://github.com/dotkernel/frontend/ for the canonical source repository
+ * @see https://github.com/japseyz/dot-migrations/ for the canonical source repository
  * @copyright Copyright (c) 2017 Apidemia (https://www.apidemia.com)
- * @license https://github.com/dotkernel/frontend/blob/master/LICENSE.md MIT License
+ * @license https://github.com/japseyz/dot-migrations/blob/master/LICENSE.md MIT License
  */
 
 declare(strict_types=1);
@@ -31,7 +31,7 @@ abstract class BaseCommand extends AbstractCommand
     {
         $this->isProduction = $isProduction;
         $this->env = $this->isProduction ? 'production' : 'development';
-        $this->shellPath = \dirname(__DIR__, 4).'/bin/phinx';
+        $this->shellPath = \dirname(__DIR__, 3).'/bin/phinx';
         $this->rootPath = \dirname(__DIR__, 5);
         $this->configPath = $this->rootPath.'/config/migrations.php';
         $this->output = [];

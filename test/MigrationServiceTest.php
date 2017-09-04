@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 /**
- * @see https://github.com/dotkernel/dot-mail/ for the canonical source repository
+ * @see https://github.com/japseyz/dot-migrations/ for the canonical source repository
  * @copyright Copyright (c) 2017 Apidemia (https://www.apidemia.com)
- * @license https://github.com/dotkernel/dot-mail/blob/master/LICENSE.md MIT License
+ * @license https://github.com/japseyz/dot-migrations/blob/master/LICENSE.md MIT License
  */
 
 namespace DotTest\Migrations;
