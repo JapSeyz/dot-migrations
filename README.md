@@ -30,7 +30,7 @@ factory to grab it. This method play an important role i not duplicating config 
 
 ### Installation
 
-1) Installing is extremely easy, all you have to do it copy the `migrations.php.dist` file to the `/config` folder and remove the .dist ending. (You may here edit the options to fit your project, but the standard setup should fit almost any needs).
+1) Installing is extremely easy, all you have to do is run `composer require japseyz/dot-migrations`, and copy the `migrations.php.dist` file to the `/config` folder and remove the .dist ending.
 
 2) After that is done, you open up `/config/config.php` and add `\Dot\Migrations\ConfigProvider::class,` to the `$aggregator` array.
 
