@@ -15,8 +15,41 @@ if (! \function_exists('config')) {
     //
     // The second is the default value
     // if no config value is found.
-    function config($path, $default)
+    function config($path, $default = '')
     {
-        return \Dot\Migrations\ConfigHelper::get($path, $default);
+        $projectRoot = \dirname(__DIR__, 4);
+        $parts = \explode('.', $path);
+        $currentPath = $projectRoot;
+        $configFile = false;
+        foreach ($parts as $i => $part) {
+            $currentPath .= '/'.\array_shift($parts);
+            if (\is_dir($currentPath)) {
+                continue;
+            }
+            if (\file_exists($currentPath.'.php')) {
+                $configFile = $currentPath.'.php';
+
+                break;
+            }
+        }
+        if (! $configFile) {
+            return $default;
+        }
+
+        try {
+            $arr = include $configFile;
+        } catch (\Exception $e) {
+            return $default;
+        }
+
+        try {
+            foreach ($parts as $part) {
+                $arr = $arr[$part];
+            }
+
+            return $arr;
+        } catch (\Exception $e) {
+            return $default;
+        }
     }
 }
