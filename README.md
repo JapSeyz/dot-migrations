@@ -6,9 +6,9 @@ Add migrations and seeders to your DotKernel3 project.
 
 Some new commands as been added to the `php dot` command.
 
-* make:migration **name** **path**
+* make:migration **name**
     * Make a migration file, which will be used to create new tables and rows in the database
-* make:seed **name** **path**
+* make:seed **name**
     * Make a seeder, which will be used to seed the database with either test or default data.
 * migrate [--force]
     * Migrate the missing migrations, use the --force in your deployment script to avoid the production environment warning.
