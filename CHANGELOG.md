@@ -1,3 +1,6 @@
+- 2017-09-09 - Version 0.1.6 available
+Better configurations and seeding bugfix
+
 - 2017-08-22 - Version 0.1.1 available
 Optimisations and better documentation ensures a better user experience.
 Boilerplate for Service injections removed, and config path relocated to prevent

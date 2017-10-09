@@ -2,40 +2,26 @@
 
 declare(strict_types=1);
 
+$config = require __DIR__ . '/config.php';
+
+$dbConfig = [
+    'adapter' => 'mysql',
+    'host' => $config['database']['hostname'],
+    'name' => $config['database']['database'],
+    'user' => $config['database']['username'],
+    'pass' => $config['database']['password'],
+    'port' => $config['database']['port'],
+    'charset' => $config['database']['charset'],
+];
+
 return [
     'environments' => [
         'default_migration_table' => 'migrations',
         'default_database' =>  'development',
 
-        'production' => [
-            'adapter' => 'mysql',
-            'host' => config('config.autoload.production.db.adapters.database.hostname', 'localhost'),
-            'name' => config('config.autoload.production.db.adapters.database.database', 'production_db'),
-            'user' => config('config.autoload.production.db.adapters.database.username', 'root'),
-            'pass' => config('config.autoload.production.db.adapters.database.password', ''),
-            'port' => 3306,
-            'charset' => config('config.autoload.production.db.adapters.database.charset', 'utf8'),
-        ],
-
-        'development' => [
-            'adapter' => 'mysql',
-            'host' => config('config.autoload.local.db.adapters.database.hostname', 'localhost'),
-            'name' => config('config.autoload.local.db.adapters.database.database', 'local_db'),
-            'user' => config('config.autoload.local.db.adapters.database.username', 'root'),
-            'pass' => config('config.autoload.local.db.adapters.database.password', ''),
-            'port' => 3306,
-            'charset' => config('config.autoload.local.db.adapters.database.charset', 'utf8'),
-        ],
-
-        'testing' => [
-            'adapter' => 'mysql',
-            'host' => config('config.autoload.testing.db.adapters.database.hostname', 'localhost'),
-            'name' => config('config.autoload.testing.db.adapters.database.database', 'testing_db'),
-            'user' => config('config.autoload.testing.db.adapters.database.username', 'root'),
-            'pass' => config('config.autoload.testing.db.adapters.database.password', ''),
-            'port' => 3306,
-            'charset' => config('config.autoload.testing.db.adapters.database.charset', 'utf8'),
-        ],
+		'production' => $dbConfig,
+        'development' => $dbConfig,
+        'testing' => $dbConfig,
     ],
 
     'paths' => [

@@ -31,7 +31,7 @@ class ResetCommand extends BaseCommand
         }
 
         // Let the user know that the command has started
-        $console->write('Resetting tables');
+        $console->writeLine('Resetting tables');
 
         // Run the Phinx command
         \exec(
@@ -44,7 +44,7 @@ class ResetCommand extends BaseCommand
 
         if (! $this->failure) {
             // Let the user know that the command has finished
-            $console->write('Finished resetting tables');
+            $console->writeLine('Finished resetting tables');
         }
 
         return 0;

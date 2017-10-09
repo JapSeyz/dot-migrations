@@ -34,16 +34,16 @@ class SeedCommand extends BaseCommand
         $matches = $route->getMatches();
 
         // Let the user know that the command has started
-        $console->write('Seeding tables');
+        $console->writeLine('Seeding tables');
 
         // Prepare the command
-        $command = $this->shellPath.' migrate '.
+        $command = $this->shellPath.' seed:run '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath.' '.
             $matches['name'];
 
         // Check whether or not to seed all or a single seeder
-        if (\array_key_exists('name', $matches)) {
+        if ($matches['name']) {
             $command .= ' -s '.$matches['name'];
         }
 
@@ -52,7 +52,7 @@ class SeedCommand extends BaseCommand
 
         if (! $this->failure) {
             // Let the user know that the tables has been seeded
-            $console->write('Finished seeding tables');
+            $console->writeLine('Finished seeding tables');
         }
 
         return 0;

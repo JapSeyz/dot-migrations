@@ -31,7 +31,7 @@ class RollbackCommand extends BaseCommand
         }
 
         // Let the user know that the roll back has started
-        $console->write('Rolling back to previous batch');
+        $console->writeLine('Rolling back to previous batch');
 
         // Run the Phinx command
         \exec(
@@ -44,7 +44,7 @@ class RollbackCommand extends BaseCommand
 
         if (! $this->failure) {
             // Let the user know that the roll back has completed
-            $console->write('Finished rolling back tables');
+            $console->writeLine('Finished rolling back tables');
         }
 
         return 0;

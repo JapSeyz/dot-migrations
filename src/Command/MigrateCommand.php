@@ -34,7 +34,7 @@ class MigrateCommand extends BaseCommand
         }
 
         // Let the user know that the migration is starting
-        $console->write('Migrating tables');
+        $console->writeLine('Migrating tables');
 
         // Run the Phinx command
         \exec(
@@ -47,7 +47,7 @@ class MigrateCommand extends BaseCommand
 
         if (! $this->failure) {
             // Let the user know that the migrations has successfully
-            $console->write('Finised migrating tables');
+            $console->writeLine('Finised migrating tables');
         }
 
         return 0;

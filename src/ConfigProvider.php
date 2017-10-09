@@ -54,7 +54,7 @@ class ConfigProvider
         return [
             'commands' => [
                 [
-                    'name' => 'make:migration <name> <path>',
+                    'name' => 'make:migration <name> [path]',
                     'description' => 'Generate a migration',
                     'handler' => MakeCommand::class,
                 ],
@@ -74,12 +74,12 @@ class ConfigProvider
                     'handler' => ResetCommand::class,
                 ],
                 [
-                    'name' => 'make:seed <name> <path>',
+                    'name' => 'make:seed <name> [path]',
                     'description' => 'Generate a seeder',
                     'handler' => MakeSeedCommand::class,
                 ],
                 [
-                    'name' => 'seed [name]',
+                    'name' => 'migrate:seed [name]',
                     'description' => 'Run seeders',
                     'handler' => SeedCommand::class,
                 ],

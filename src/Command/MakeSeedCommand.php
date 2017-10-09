@@ -33,8 +33,12 @@ class MakeSeedCommand extends BaseCommand
         // Fetch command arguments
         $matches = $route->getMatches();
 
+        if(!$matches['path']){
+        	$path = 'data/database/seeds';
+        }
+
         if ( ! \is_dir($matches['path'])) {
-            $console->write('The entered path does not exist');
+            $console->writeLine('The entered path does not exist');
             return 0;
         }
 
@@ -53,7 +57,7 @@ class MakeSeedCommand extends BaseCommand
         if (! $this->failure) {
             $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Seed has been created
-            $console->write('Created seeder '.$name.'.php');
+            $console->writeLine('Created seeder '.$name.'.php');
         }
 
         return 0;

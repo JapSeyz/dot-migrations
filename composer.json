@@ -21,10 +21,7 @@
   "autoload": {
     "psr-4": {
       "Dot\\Migrations\\": "src/"
-    },
-    "files": [
-      "src\\helpers.php"
-    ]
+    }
   },
   "autoload-dev": {
     "psr-4": {

@@ -31,7 +31,7 @@ abstract class BaseCommand extends AbstractCommand
     {
         $this->isProduction = $isProduction;
         $this->env = $this->isProduction ? 'production' : 'development';
-        $this->shellPath = \dirname(__DIR__, 3).'/bin/phinx';
+        $this->shellPath = \dirname(__DIR__, 4).'/bin/phinx';
         $this->rootPath = \dirname(__DIR__, 5);
         $this->configPath = $this->rootPath.'/config/migrations.php';
         $this->output = [];
@@ -48,7 +48,7 @@ abstract class BaseCommand extends AbstractCommand
         // Validate that the user knows what they're doing
         if ($this->isProduction) {
             if (! Confirm::prompt("You're in production, are you sure you want to run the command? [y/n] ")) {
-                $console->write('Command aborted');
+                $console->writeLine('Command aborted');
 
                 return true;
             }

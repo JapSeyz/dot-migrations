@@ -34,8 +34,12 @@ class MakeCommand extends BaseCommand
         // Fetch command arguments
         $matches = $route->getMatches();
 
+        if(!$matches['path']){
+        	$path = 'data/database/migrations';
+        }
+
         if ( ! \is_dir($matches['path'])) {
-            $console->write('The entered path does not exist');
+            $console->writeLine('The entered path does not exist');
             return 0;
         }
 
@@ -54,7 +58,7 @@ class MakeCommand extends BaseCommand
         if ( ! $this->failure) {
             $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Migration has been created
-            $console->write('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php');
+            $console->writeLine('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php');
         }
 
         return 0;
