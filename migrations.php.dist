@@ -3,15 +3,16 @@
 declare(strict_types=1);
 
 $config = require __DIR__ . '/config.php';
+$db = $config['db']['adapters']['database'];
 
 $dbConfig = [
     'adapter' => 'mysql',
-    'host' => $config['database']['hostname'],
-    'name' => $config['database']['database'],
-    'user' => $config['database']['username'],
-    'pass' => $config['database']['password'],
-    'port' => $config['database']['port'],
-    'charset' => $config['database']['charset'],
+    'host' => $db['hostname'],
+    'name' => $db['database'],
+    'user' => $db['username'],
+    'pass' => $db['password'],
+    'port' => $db['port'],
+    'charset' => $db['charset'],
 ];
 
 return [
@@ -19,7 +20,7 @@ return [
         'default_migration_table' => 'migrations',
         'default_database' =>  'development',
 
-		'production' => $dbConfig,
+        'production' => $dbConfig,
         'development' => $dbConfig,
         'testing' => $dbConfig,
     ],
