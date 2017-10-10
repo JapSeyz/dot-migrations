@@ -33,7 +33,7 @@ class MakeSeedCommand extends BaseCommand
         // Fetch command arguments
         $matches = $route->getMatches();
 
-        if(!$matches['path']){
+        if(empty($matches['path'])){
         	$matches['path'] = 'data/database/seeds';
         }
 

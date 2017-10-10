@@ -39,11 +39,10 @@ class SeedCommand extends BaseCommand
         // Prepare the command
         $command = $this->shellPath.' seed:run '.
             '-e '.$this->env.' '.
-            '-c '.$this->configPath.' '.
-            $matches['name'];
+            '-c '.$this->configPath;
 
         // Check whether or not to seed all or a single seeder
-        if ($matches['name']) {
+        if (!empty($matches['name'])) {
             $command .= ' -s '.$matches['name'];
         }
 
