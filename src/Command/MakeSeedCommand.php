@@ -34,7 +34,7 @@ class MakeSeedCommand extends BaseCommand
         $matches = $route->getMatches();
 
         if(!$matches['path']){
-        	$path = 'data/database/seeds';
+        	$matches['path'] = 'data/database/seeds';
         }
 
         if ( ! \is_dir($matches['path'])) {
