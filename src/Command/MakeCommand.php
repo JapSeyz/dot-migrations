@@ -35,7 +35,7 @@ class MakeCommand extends BaseCommand
         $matches = $route->getMatches();
 
         if(!$matches['path']){
-        	$path = 'data/database/migrations';
+        	$matches['path'] = 'data/database/migrations';
         }
 
         if ( ! \is_dir($matches['path'])) {
