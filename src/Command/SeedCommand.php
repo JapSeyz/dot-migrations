@@ -43,7 +43,7 @@ class SeedCommand extends BaseCommand
             $matches['name'];
 
         // Check whether or not to seed all or a single seeder
-        if ($matches['name']) {
+        if (!empty($matches['name'])) {
             $command .= ' -s '.$matches['name'];
         }
 
