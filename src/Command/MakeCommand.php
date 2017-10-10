@@ -39,7 +39,7 @@ class MakeCommand extends BaseCommand
         }
 
         if ( ! \is_dir($matches['path'])) {
-            $console->writeLine('The entered path does not exist');
+            $console->writeLine('The entered path ('.$matches['path'].') does not exist');
             return 0;
         }
 
@@ -58,7 +58,7 @@ class MakeCommand extends BaseCommand
         if ( ! $this->failure) {
             $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Migration has been created
-            $console->writeLine('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php');
+            $console->writeLine('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php, in directory: '.$matches['path']);
         }
 
         return 0;

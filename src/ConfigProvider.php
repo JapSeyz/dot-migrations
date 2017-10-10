@@ -79,7 +79,7 @@ class ConfigProvider
                     'handler' => MakeSeedCommand::class,
                 ],
                 [
-                    'name' => 'migrate:seed [<name>]',
+                    'name' => 'migrate:seed',
                     'description' => 'Run seeders',
                     'handler' => SeedCommand::class,
                 ],

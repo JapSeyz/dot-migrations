@@ -1,3 +1,6 @@
+- 2017-09-10 - Version 0.1.9 available
+Fully integrates Zend Consoles optional parameters
+
 - 2017-09-09 - Version 0.1.6 available
 Better configurations and seeding bugfix
 

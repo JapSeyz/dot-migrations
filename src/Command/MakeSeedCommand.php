@@ -38,7 +38,7 @@ class MakeSeedCommand extends BaseCommand
         }
 
         if ( ! \is_dir($matches['path'])) {
-            $console->writeLine('The entered path does not exist');
+            $console->writeLine('The entered path ('.$matches['path'].') does not exist');
             return 0;
         }
 
@@ -57,7 +57,7 @@ class MakeSeedCommand extends BaseCommand
         if (! $this->failure) {
             $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Seed has been created
-            $console->writeLine('Created seeder '.$name.'.php');
+            $console->writeLine('Created seeder '.$name.'.php, in directory: '.$matches['path']);
         }
 
         return 0;

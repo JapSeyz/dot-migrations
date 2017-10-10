@@ -30,9 +30,6 @@ class SeedCommand extends BaseCommand
             return 0;
         }
 
-        // Get command arguments
-        $matches = $route->getMatches();
-
         // Let the user know that the command has started
         $console->writeLine('Seeding tables');
 
@@ -40,12 +37,7 @@ class SeedCommand extends BaseCommand
         $command = $this->shellPath.' seed:run '.
             '-e '.$this->env.' '.
             '-c '.$this->configPath;
-
-        // Check whether or not to seed all or a single seeder
-        if (!empty($matches['name'])) {
-            $command .= ' -s '.$matches['name'];
-        }
-
+        
         // Execute the command
         \exec($command, $this->output, $this->failure);
 
