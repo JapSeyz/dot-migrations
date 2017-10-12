@@ -9,6 +9,7 @@ declare(strict_types = 1);
 
 namespace Dot\Migrations;
 
+use Dot\Migrations\Command\GodCommand;
 use Dot\Migrations\Command\MakeCommand;
 use Dot\Migrations\Command\SeedCommand;
 use Dot\Migrations\Command\ResetCommand;
@@ -46,6 +47,7 @@ class ConfigProvider
                 ResetCommand::class => ResetCommandFactory::class,
                 RollbackCommand::class => CommandFactory::class,
                 SeedCommand::class => CommandFactory::class,
+                GodCommand::class => CommandFactory::class,
             ],
         ];
     }
@@ -70,7 +72,7 @@ class ConfigProvider
                     'handler' => RollbackCommand::class,
                 ],
                 [
-                    'name' => 'migrate:reset [--hard|-h]:hard',
+                    'name' => 'migrate:reset [--hard|-h]:hard [--force|-f]:force',
                     'description' => 'Reset your database',
                     'handler' => ResetCommand::class,
                 ],
@@ -80,9 +82,14 @@ class ConfigProvider
                     'handler' => MakeSeedCommand::class,
                 ],
                 [
-                    'name' => 'migrate:seed',
+                    'name' => 'migrate:seed [<path>] [--force|-f]:force',
                     'description' => 'Run seeders',
                     'handler' => SeedCommand::class,
+                ],
+                [
+                    'name' => 'migrate:god',
+                    'description' => 'Reset, migrate and reseed',
+                    'handler' => GodCommand::class,
                 ],
             ],
         ];

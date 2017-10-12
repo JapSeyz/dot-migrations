@@ -27,8 +27,11 @@ class SeedCommand extends BaseCommand
      */
     public function __invoke(Route $route, AdapterInterface $console)
     {
-        // Check for production envrionment
-        if ($this->shouldAbortInProduction($console)) {
+        // Fetch command arguments
+        $matches = $route->getMatches();
+
+        // Check for production, unless the --force flag is set
+        if (empty($matches['force']) && $this->shouldAbortInProduction($console)) {
             return 0;
         }
 
@@ -39,6 +42,10 @@ class SeedCommand extends BaseCommand
         $command = $this->shellPath . ' seed:run ' .
             '-e ' . $this->env . ' ' .
             '-c ' . $this->configPath;
+
+        if (! empty($matches['path'])) {
+            $command .= ' -s "' . $matches['path'] . '"';
+        };
 
         // Execute the command
         \exec($command, $this->output, $this->failure);

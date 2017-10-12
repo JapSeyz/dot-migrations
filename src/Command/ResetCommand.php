@@ -39,13 +39,14 @@ class ResetCommand extends BaseCommand
      */
     public function __invoke(Route $route, AdapterInterface $console)
     {
-        // Check for production
-        if ($this->shouldAbortInProduction($console)) {
+        // Fetch command arguments
+        $matches = $route->getMatches();
+
+        // Check for production, unless the --force flag is set
+        if (empty($matches['force']) && $this->shouldAbortInProduction($console)) {
             return 0;
         }
 
-        // Fetch command arguments
-        $matches = $route->getMatches();
         $hard = ! empty($matches['hard']);
 
         // Let the user know that the command has started
