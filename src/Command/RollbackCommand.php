@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Dot\Migrations\Command;
 
 use Zend\Console\Adapter\AdapterInterface;
+use Zend\Console\ColorInterface;
 use ZF\Console\Route;
 
 /**
@@ -21,6 +22,7 @@ class RollbackCommand extends BaseCommand
     /**
      * @param Route $route
      * @param AdapterInterface $console
+     *
      * @return int
      */
     public function __invoke(Route $route, AdapterInterface $console)
@@ -35,9 +37,9 @@ class RollbackCommand extends BaseCommand
 
         // Run the Phinx command
         \exec(
-            $this->shellPath.' rollback '.
-            '-e '.$this->env.' '.
-            '-c '.$this->configPath.' ',
+            $this->shellPath . ' rollback ' .
+            '-e ' . $this->env . ' ' .
+            '-c ' . $this->configPath . ' ',
             $this->output,
             $this->failure
         );
@@ -45,7 +47,10 @@ class RollbackCommand extends BaseCommand
         if (! $this->failure) {
             // Let the user know that the roll back has completed
             $console->writeLine('Finished rolling back tables');
+        } else {
+            $console->writeLine('An error occurred, try again', ColorInterface::RED);
         }
+        $console->writeLine('');
 
         return 0;
     }

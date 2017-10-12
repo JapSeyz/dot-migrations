@@ -12,7 +12,9 @@
   "require": {
     "php": "^7.1",
     "zendframework/zend-servicemanager": "^3.3.0",
-    "robmorgan/phinx": "^0.9.0"
+    "robmorgan/phinx": "^0.9.0",
+    "zendframework/zend-console": "^2.6",
+    "zfcampus/zf-console": "^1.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8",

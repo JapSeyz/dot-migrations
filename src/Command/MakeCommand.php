@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Dot\Migrations\Command;
 
+use Zend\Console\ColorInterface;
 use ZF\Console\Route;
 use Zend\Console\Adapter\AdapterInterface;
 
@@ -35,11 +36,14 @@ class MakeCommand extends BaseCommand
         $matches = $route->getMatches();
 
         if(empty($matches['path'])){
-        	$matches['path'] = 'data/database/migrations';
+            $matches['path'] = 'data/database/migrations';
         }
 
         if ( ! \is_dir($matches['path'])) {
-            $console->writeLine('The entered path ('.$matches['path'].') does not exist');
+            $console->write('The entered path (', ColorInterface::RED);
+            $console->write($matches['path'], ColorInterface::LIGHT_BLUE);
+            $console->writeLine(') does not exist', ColorInterface::RED);
+
             return 0;
         }
 
@@ -58,8 +62,15 @@ class MakeCommand extends BaseCommand
         if ( ! $this->failure) {
             $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Migration has been created
-            $console->writeLine('Created Migration: ' . \date('YmdHis') . '_' . $name . '.php, in directory: '.$matches['path']);
+            $console->writeLine('');
+            $console->write('Created migration ');
+            $console->write(\date('YmdHis') . '_' . $name . '.php', ColorInterface::LIGHT_BLUE);
+            $console->write(', in directory: ');
+            $console->writeLine($matches['path'], ColorInterface::LIGHT_BLUE);
+         } else {
+            $console->writeLine('An error occurred, try again', ColorInterface::RED);
         }
+        $console->writeLine('');
 
         return 0;
     }

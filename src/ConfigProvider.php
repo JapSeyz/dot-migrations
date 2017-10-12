@@ -16,6 +16,7 @@ use Dot\Migrations\Command\MigrateCommand;
 use Dot\Migrations\Factory\CommandFactory;
 use Dot\Migrations\Command\MakeSeedCommand;
 use Dot\Migrations\Command\RollbackCommand;
+use Dot\Migrations\Factory\ResetCommandFactory;
 
 /**
  * Class ConfigProvider
@@ -42,7 +43,7 @@ class ConfigProvider
                 MakeCommand::class => CommandFactory::class,
                 MakeSeedCommand::class => CommandFactory::class,
                 MigrateCommand::class => CommandFactory::class,
-                ResetCommand::class => CommandFactory::class,
+                ResetCommand::class => ResetCommandFactory::class,
                 RollbackCommand::class => CommandFactory::class,
                 SeedCommand::class => CommandFactory::class,
             ],
@@ -59,7 +60,7 @@ class ConfigProvider
                     'handler' => MakeCommand::class,
                 ],
                 [
-                    'name' => 'migrate [--force]',
+                    'name' => 'migrate [--force|-f]:force',
                     'description' => 'Run migrations',
                     'handler' => MigrateCommand::class,
                 ],
@@ -69,7 +70,7 @@ class ConfigProvider
                     'handler' => RollbackCommand::class,
                 ],
                 [
-                    'name' => 'migrate:reset',
+                    'name' => 'migrate:reset [--hard|-h]:hard',
                     'description' => 'Reset your database',
                     'handler' => ResetCommand::class,
                 ],
