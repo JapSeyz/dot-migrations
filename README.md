@@ -6,27 +6,34 @@ Add migrations and seeders to your DotKernel3 project.
 
 Some new commands as been added to the `php dot` command.
 
-* make:migration **name**
+* make:migration <**name**> [**path**]
     * Make a migration file, which will be used to create new tables and rows in the database
-* make:seed **name**
-    * Make a seeder, which will be used to seed the database with either test or default data.
-* migrate [--force]
+    * The path is used to pre-fill the namespace, and has to match a path in the config file.
+    * **data/database/migrations** is the default path if none are supplied
+* make:seed <**name**> [**path**]
+    * Make a seeder, which will be used to seed the database with data.
+    * The path is optional and will default to **data/database/seeds**.
+    * When supplying your own path, it must match a path from the config file.
+* migrate [**--force|-f**]
     * Migrate the missing migrations, use the --force in your deployment script to avoid the production environment warning.
-* migrate:reset
+* migrate:reset [**--force|-f**] [**--hard|-h**]
     * Rollback all migrations and reset the database.
+    * Supplying **--force** will prevent the environment warning in production.
+    * Supplying the **--hard** flag will drop and re-create the entire schema.
 * migrate:rollback
-    * Rollback the latest migration only.
-* seed [name]
-    * Run all seeders, or optionally provide a name, and only run that seeder
+    * Rollback a single batch of migrations only.
+* migrate:seed [**path**] [**--force|-f**]
+    * Run all seeders, or optionally provide a path to a specific seeder to run.
+    * If a path is provided, please escape it with double-quotes like "Data\Database\Seeder\UserTableSeeder"
+    * Supplying the **--force** flag will prevent the environment warning in production.
+* migrate:god
+    * The God command is intended for development and will 
+    recreate the schema, re-migrate and re-seed the database.
 
 To run any of them simply run `php dot <command>`.
-Dot kernel will take care of the rest, putting the files in the
-right directory etc.
+DotKernel will take care of the rest, putting the files in the
+correct directories etc.
 Settings can be found in the `migrations.php.dist`.
-
-The package also exposes a single method, the `config()` method, which allows you to
-grab any config key/value, before it enters the global configuration, thus you don't need a
-factory to grab it. This method play an important role i not duplicating config values.
 
 ### Installation
 
@@ -41,5 +48,5 @@ factory to grab it. This method play an important role i not duplicating config 
 
 ### Troubleshooting
 
-##### The migrations commands does not show up, what do I do?
+##### The migration commands does not show up, what do I do?
 If you've follow the installation, but no commands show up, try deleting `/data/config-cache.php` and running `php dot` again.
