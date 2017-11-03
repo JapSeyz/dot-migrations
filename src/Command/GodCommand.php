@@ -53,7 +53,7 @@ class GodCommand extends BaseCommand
         exec('php dot migrate:seed -f');
 
         $console->writeLine('');
-        $console->writeLine('Thy mission has been carried out', ColorInterface::LIGHT_BLUE);
+        $console->writeLine('The God-command has finished', ColorInterface::LIGHT_BLUE);
         $console->writeLine('');
     }
 }

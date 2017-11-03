@@ -60,10 +60,9 @@ class MakeSeedCommand extends BaseCommand
         );
 
         if (! $this->failure) {
-            $name = \strtolower(\preg_replace('/(?<!^)[A-Z]/', '_$0', $matches['name']));
             // Let the user know that the Seed has been created
             $console->write('Created seeder: ');
-            $console->write($name.'.php', ColorInterface::LIGHT_BLUE);
+            $console->write($matches['name'].'.php', ColorInterface::LIGHT_BLUE);
             $console->write(', in directory: ');
             $console->writeLine($matches['path'], ColorInterface::LIGHT_BLUE);
         } else {
